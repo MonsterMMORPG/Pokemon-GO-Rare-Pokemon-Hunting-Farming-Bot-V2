@@ -243,7 +243,7 @@ namespace PoGo.NecroBot.Logic
         [DefaultValue("en")]
         public string TranslationLanguageCode;
         //autoupdate
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool AutoUpdate;
         [DefaultValue(true)]
         public bool TransferConfigAndAuthOnUpdate;
@@ -288,13 +288,13 @@ namespace PoGo.NecroBot.Logic
         //position
         [DefaultValue(false)]
         public bool DisableHumanWalking;
-        [DefaultValue(40.778915)]
+        [DefaultValue(36.80201)]
         public double DefaultLatitude;
-        [DefaultValue(-73.962277)]
+        [DefaultValue(34.63332)]
         public double DefaultLongitude;
-        [DefaultValue(31.0)]
+        [DefaultValue(130)]
         public double WalkingSpeedInKilometerPerHour;
-        [DefaultValue(10)]
+        [DefaultValue(10000)]
         public int MaxSpawnLocationOffset;
         //delays
         [DefaultValue(1000)]
@@ -302,7 +302,7 @@ namespace PoGo.NecroBot.Logic
         [DefaultValue(500)]
         public int DelayBetweenPokemonCatch;
         //dump stats
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool DumpPokemonStats;
         //evolve
         [DefaultValue(95)]
@@ -316,7 +316,7 @@ namespace PoGo.NecroBot.Logic
         [DefaultValue(false)]
         public bool KeepPokemonsThatCanEvolve;
         //keeping
-        [DefaultValue(1250)]
+        [DefaultValue(2500)]
         public int KeepMinCp;
         [DefaultValue(90)]
         public float KeepMinIvPercentage;
@@ -326,9 +326,9 @@ namespace PoGo.NecroBot.Logic
         public string KeepMinOperator;
         [DefaultValue(false)]
         public bool UseKeepMinLvl;
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool PrioritizeIvOverCp;
-        [DefaultValue(1)]
+        [DefaultValue(2)]
         public int KeepMinDuplicatePokemon;
         //gpx
         [DefaultValue(false)]
@@ -347,9 +347,9 @@ namespace PoGo.NecroBot.Logic
         public bool UseLuckyEggConstantly;
         [DefaultValue(30)]
         public int UseLuckyEggsMinPokemonAmount;
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool UseLuckyEggsWhileEvolving;
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool UseIncenseConstantly;
         [DefaultValue(1000)]
         public int UseBerriesMinCp;
@@ -366,9 +366,9 @@ namespace PoGo.NecroBot.Logic
         public string SnipeLocationServer;
         [DefaultValue(16969)]
         public int SnipeLocationServerPort;
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool GetSniperInfoFromPokezz;
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool GetOnlyVerifiedSniperInfoFromPokezz;
         [DefaultValue(20)]
         public int MinPokeballsToSnipe;
@@ -389,24 +389,24 @@ namespace PoGo.NecroBot.Logic
         //rename
         [DefaultValue(false)]
         public bool RenamePokemon;
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool RenameOnlyAboveIv;
         [DefaultValue("{1}_{0}")]
         public string RenameTemplate;
         //amounts
         [DefaultValue(6)]
         public int MaxPokeballsPerPokemon;
-        [DefaultValue(1000)]
+        [DefaultValue(100000)]
         public int MaxTravelDistanceInMeters;
         [DefaultValue(false)]
         public bool RandomizeRecycle;
         [DefaultValue(5)]
         public int RandomRecycleValue;
-        [DefaultValue(120)]
+        [DefaultValue(2000)]
         public int TotalAmountOfPokeballsToKeep;
-        [DefaultValue(80)]
+        [DefaultValue(100)]
         public int TotalAmountOfPotionsToKeep;
-        [DefaultValue(60)]
+        [DefaultValue(50)]
         public int TotalAmountOfRevivesToKeep;
         [DefaultValue(50)]
         public int TotalAmountOfBerriesToKeep;
@@ -468,6 +468,16 @@ namespace PoGo.NecroBot.Logic
         public List<KeyValuePair<ItemId, int>> ItemRecycleFilter = new List<KeyValuePair<ItemId, int>>
         {
             new KeyValuePair<ItemId, int>(ItemId.ItemUnknown, 0),
+            new KeyValuePair<ItemId, int>(ItemId.ItemPokeBall, 100),
+            new KeyValuePair<ItemId, int>(ItemId.ItemGreatBall, 200),
+            new KeyValuePair<ItemId, int>(ItemId.ItemUltraBall, 4000),
+            new KeyValuePair<ItemId, int>(ItemId.ItemMasterBall, 4000),
+            new KeyValuePair<ItemId, int>(ItemId.ItemPotion, 0),
+            new KeyValuePair<ItemId, int>(ItemId.ItemSuperPotion, 0),
+            new KeyValuePair<ItemId, int>(ItemId.ItemHyperPotion, 50),
+            new KeyValuePair<ItemId, int>(ItemId.ItemMaxPotion, 50),
+            new KeyValuePair<ItemId, int>(ItemId.ItemRevive, 25),
+            new KeyValuePair<ItemId, int>(ItemId.ItemMaxRevive, 25),
             new KeyValuePair<ItemId, int>(ItemId.ItemLuckyEgg, 200),
             new KeyValuePair<ItemId, int>(ItemId.ItemIncenseOrdinary, 100),
             new KeyValuePair<ItemId, int>(ItemId.ItemIncenseSpicy, 100),
@@ -477,6 +487,11 @@ namespace PoGo.NecroBot.Logic
             new KeyValuePair<ItemId, int>(ItemId.ItemXAttack, 100),
             new KeyValuePair<ItemId, int>(ItemId.ItemXDefense, 100),
             new KeyValuePair<ItemId, int>(ItemId.ItemXMiracle, 100),
+            new KeyValuePair<ItemId, int>(ItemId.ItemRazzBerry, 50),
+            new KeyValuePair<ItemId, int>(ItemId.ItemBlukBerry, 10),
+            new KeyValuePair<ItemId, int>(ItemId.ItemNanabBerry, 10),
+            new KeyValuePair<ItemId, int>(ItemId.ItemWeparBerry, 30),
+            new KeyValuePair<ItemId, int>(ItemId.ItemPinapBerry, 30),
             new KeyValuePair<ItemId, int>(ItemId.ItemSpecialCamera, 100),
             new KeyValuePair<ItemId, int>(ItemId.ItemIncubatorBasicUnlimited, 100),
             new KeyValuePair<ItemId, int>(ItemId.ItemIncubatorBasic, 100),
@@ -486,190 +501,190 @@ namespace PoGo.NecroBot.Logic
 
         public List<PokemonId> PokemonsNotToTransfer = new List<PokemonId>
         {
-            //criteria: from SS Tier to A Tier + Regional Exclusive
-            PokemonId.Venusaur,
-            PokemonId.Charizard,
-            PokemonId.Blastoise,
-            //PokemonId.Nidoqueen,
-            //PokemonId.Nidoking,
-            PokemonId.Clefable,
-            //PokemonId.Vileplume,
-            //PokemonId.Golduck,
-            //PokemonId.Arcanine,
-            //PokemonId.Poliwrath,
-            //PokemonId.Machamp,
-            //PokemonId.Victreebel,
-            //PokemonId.Golem,
-            //PokemonId.Slowbro,
-            //PokemonId.Farfetchd,
-            PokemonId.Muk,
-            //PokemonId.Exeggutor,
-            //PokemonId.Lickitung,
-            PokemonId.Chansey,
-            //PokemonId.Kangaskhan,
-            //PokemonId.MrMime,
-            //PokemonId.Tauros,
-            PokemonId.Gyarados,
-            //PokemonId.Lapras,
-            PokemonId.Ditto,
-            //PokemonId.Vaporeon,
-            //PokemonId.Jolteon,
-            //PokemonId.Flareon,
-            //PokemonId.Porygon,
-            PokemonId.Snorlax,
-            PokemonId.Articuno,
-            PokemonId.Zapdos,
-            PokemonId.Moltres,
-            PokemonId.Dragonite,
-            PokemonId.Mewtwo,
-            PokemonId.Mew
+            ////criteria: from SS Tier to A Tier + Regional Exclusive
+            //PokemonId.Venusaur,
+            //PokemonId.Charizard,
+            //PokemonId.Blastoise,
+            ////PokemonId.Nidoqueen,
+            ////PokemonId.Nidoking,
+            //PokemonId.Clefable,
+            ////PokemonId.Vileplume,
+            ////PokemonId.Golduck,
+            ////PokemonId.Arcanine,
+            ////PokemonId.Poliwrath,
+            ////PokemonId.Machamp,
+            ////PokemonId.Victreebel,
+            ////PokemonId.Golem,
+            ////PokemonId.Slowbro,
+            ////PokemonId.Farfetchd,
+            //PokemonId.Muk,
+            ////PokemonId.Exeggutor,
+            ////PokemonId.Lickitung,
+            //PokemonId.Chansey,
+            ////PokemonId.Kangaskhan,
+            ////PokemonId.MrMime,
+            ////PokemonId.Tauros,
+            //PokemonId.Gyarados,
+            ////PokemonId.Lapras,
+            //PokemonId.Ditto,
+            ////PokemonId.Vaporeon,
+            ////PokemonId.Jolteon,
+            ////PokemonId.Flareon,
+            ////PokemonId.Porygon,
+            //PokemonId.Snorlax,
+            //PokemonId.Articuno,
+            //PokemonId.Zapdos,
+            //PokemonId.Moltres,
+            //PokemonId.Dragonite,
+            //PokemonId.Mewtwo,
+            //PokemonId.Mew
         };
 
         public List<PokemonId> PokemonsToEvolve = new List<PokemonId>
         {
-            /*NOTE: keep all the end-of-line commas exept for the last one or an exception will be thrown!
-            criteria: 12 candies*/
-            PokemonId.Caterpie,
-            PokemonId.Weedle,
-            PokemonId.Pidgey,
-            /*criteria: 25 candies*/
-            //PokemonId.Bulbasaur,
-            //PokemonId.Charmander,
-            //PokemonId.Squirtle,
-            PokemonId.Rattata
-            //PokemonId.NidoranFemale,
-            //PokemonId.NidoranMale,
-            //PokemonId.Oddish,
-            //PokemonId.Poliwag,
-            //PokemonId.Abra,
-            //PokemonId.Machop,
-            //PokemonId.Bellsprout,
-            //PokemonId.Geodude,
-            //PokemonId.Gastly,
-            //PokemonId.Eevee,
-            //PokemonId.Dratini,
-            /*criteria: 50 candies commons*/
-            //PokemonId.Spearow,
-            //PokemonId.Ekans,
-            //PokemonId.Zubat,
-            //PokemonId.Paras,
-            //PokemonId.Venonat,
-            //PokemonId.Psyduck,
-            //PokemonId.Slowpoke,
-            //PokemonId.Doduo,
-            //PokemonId.Drowzee,
-            //PokemonId.Krabby,
-            //PokemonId.Horsea,
-            //PokemonId.Goldeen,
-            //PokemonId.Staryu
+            ///*NOTE: keep all the end-of-line commas exept for the last one or an exception will be thrown!
+            //criteria: 12 candies*/
+            //PokemonId.Caterpie,
+            //PokemonId.Weedle,
+            //PokemonId.Pidgey,
+            ///*criteria: 25 candies*/
+            ////PokemonId.Bulbasaur,
+            ////PokemonId.Charmander,
+            ////PokemonId.Squirtle,
+            //PokemonId.Rattata
+            ////PokemonId.NidoranFemale,
+            ////PokemonId.NidoranMale,
+            ////PokemonId.Oddish,
+            ////PokemonId.Poliwag,
+            ////PokemonId.Abra,
+            ////PokemonId.Machop,
+            ////PokemonId.Bellsprout,
+            ////PokemonId.Geodude,
+            ////PokemonId.Gastly,
+            ////PokemonId.Eevee,
+            ////PokemonId.Dratini,
+            ///*criteria: 50 candies commons*/
+            ////PokemonId.Spearow,
+            ////PokemonId.Ekans,
+            ////PokemonId.Zubat,
+            ////PokemonId.Paras,
+            ////PokemonId.Venonat,
+            ////PokemonId.Psyduck,
+            ////PokemonId.Slowpoke,
+            ////PokemonId.Doduo,
+            ////PokemonId.Drowzee,
+            ////PokemonId.Krabby,
+            ////PokemonId.Horsea,
+            ////PokemonId.Goldeen,
+            ////PokemonId.Staryu
         };
 
         public List<PokemonId> PokemonsToIgnore = new List<PokemonId>
         {
-            //criteria: most common
-            PokemonId.Caterpie,
-            PokemonId.Weedle,
-            PokemonId.Pidgey,
-            PokemonId.Rattata,
-            PokemonId.Spearow,
-            PokemonId.Zubat,
-            PokemonId.Doduo
+            ////criteria: most common
+            //PokemonId.Caterpie,
+            //PokemonId.Weedle,
+            //PokemonId.Pidgey,
+            //PokemonId.Rattata,
+            //PokemonId.Spearow,
+            //PokemonId.Zubat,
+            //PokemonId.Doduo
         };
 
         public Dictionary<PokemonId, TransferFilter> PokemonsTransferFilter = new Dictionary<PokemonId, TransferFilter>
         {
-            //criteria: based on NY Central Park and Tokyo variety + sniping optimization
-            {PokemonId.Golduck, new TransferFilter(1800, 6, false, 95, "or", 1)},
-            {PokemonId.Farfetchd, new TransferFilter(1250, 6, false, 80, "or", 1)},
-            {PokemonId.Krabby, new TransferFilter(1250, 6, false, 95, "or", 1)},
-            {PokemonId.Kangaskhan, new TransferFilter(1500, 6, false, 60, "or", 1)},
-            {PokemonId.Horsea, new TransferFilter(1250, 6, false, 95, "or", 1)},
-            {PokemonId.Staryu, new TransferFilter(1250, 6, false, 95, "or", 1)},
-            {PokemonId.MrMime, new TransferFilter(1250, 6, false, 40, "or", 1)},
-            {PokemonId.Scyther, new TransferFilter(1800, 6, false, 80, "or", 1)},
-            {PokemonId.Jynx, new TransferFilter(1250, 6, false, 95, "or", 1)},
-            {PokemonId.Electabuzz, new TransferFilter(1250, 6, false, 80, "or", 1)},
-            {PokemonId.Magmar, new TransferFilter(1500, 6, false, 80, "or", 1)},
-            {PokemonId.Pinsir, new TransferFilter(1800, 6, false, 95, "or", 1)},
-            {PokemonId.Tauros, new TransferFilter(1250, 6, false, 90, "or", 1)},
-            {PokemonId.Magikarp, new TransferFilter(200, 6, false, 95, "or", 1)},
-            {PokemonId.Gyarados, new TransferFilter(1250, 6, false, 90, "or", 1)},
-            {PokemonId.Lapras, new TransferFilter(1800, 6, false, 80, "or", 1)},
-            {PokemonId.Eevee, new TransferFilter(1250, 6, false, 95, "or", 1)},
-            {PokemonId.Vaporeon, new TransferFilter(1500, 6, false, 90, "or", 1)},
-            {PokemonId.Jolteon, new TransferFilter(1500, 6, false, 90, "or", 1)},
-            {PokemonId.Flareon, new TransferFilter(1500, 6, false, 90, "or", 1)},
-            {PokemonId.Porygon, new TransferFilter(1250, 6, false, 60, "or", 1)},
-            {PokemonId.Snorlax, new TransferFilter(2600, 6, false, 90, "or", 1)},
-            {PokemonId.Dragonite, new TransferFilter(2600, 6, false, 90, "or", 1)}
+            ////criteria: based on NY Central Park and Tokyo variety + sniping optimization
+            //{PokemonId.Golduck, new TransferFilter(1800, 6, false, 95, "or", 1)},
+            //{PokemonId.Farfetchd, new TransferFilter(1250, 6, false, 80, "or", 1)},
+            //{PokemonId.Krabby, new TransferFilter(1250, 6, false, 95, "or", 1)},
+            //{PokemonId.Kangaskhan, new TransferFilter(1500, 6, false, 60, "or", 1)},
+            //{PokemonId.Horsea, new TransferFilter(1250, 6, false, 95, "or", 1)},
+            //{PokemonId.Staryu, new TransferFilter(1250, 6, false, 95, "or", 1)},
+            //{PokemonId.MrMime, new TransferFilter(1250, 6, false, 40, "or", 1)},
+            //{PokemonId.Scyther, new TransferFilter(1800, 6, false, 80, "or", 1)},
+            //{PokemonId.Jynx, new TransferFilter(1250, 6, false, 95, "or", 1)},
+            //{PokemonId.Electabuzz, new TransferFilter(1250, 6, false, 80, "or", 1)},
+            //{PokemonId.Magmar, new TransferFilter(1500, 6, false, 80, "or", 1)},
+            //{PokemonId.Pinsir, new TransferFilter(1800, 6, false, 95, "or", 1)},
+            //{PokemonId.Tauros, new TransferFilter(1250, 6, false, 90, "or", 1)},
+            //{PokemonId.Magikarp, new TransferFilter(200, 6, false, 95, "or", 1)},
+            //{PokemonId.Gyarados, new TransferFilter(1250, 6, false, 90, "or", 1)},
+            //{PokemonId.Lapras, new TransferFilter(1800, 6, false, 80, "or", 1)},
+            //{PokemonId.Eevee, new TransferFilter(1250, 6, false, 95, "or", 1)},
+            //{PokemonId.Vaporeon, new TransferFilter(1500, 6, false, 90, "or", 1)},
+            //{PokemonId.Jolteon, new TransferFilter(1500, 6, false, 90, "or", 1)},
+            //{PokemonId.Flareon, new TransferFilter(1500, 6, false, 90, "or", 1)},
+            //{PokemonId.Porygon, new TransferFilter(1250, 6, false, 60, "or", 1)},
+            //{PokemonId.Snorlax, new TransferFilter(2600, 6, false, 90, "or", 1)},
+            //{PokemonId.Dragonite, new TransferFilter(2600, 6, false, 90, "or", 1)}
         };
 
         public SnipeSettings PokemonToSnipe = new SnipeSettings
         {
-            Locations = new List<Location>
-            {
-                new Location(38.55680748646112, -121.2383794784546), //Dratini Spot
-                new Location(-33.85901900, 151.21309800), //Magikarp Spot
-                new Location(47.5014969, -122.0959568), //Eevee Spot
-                new Location(51.5025343, -0.2055027) //Charmender Spot
-            },
-            Pokemon = new List<PokemonId>
-            {
-                PokemonId.Venusaur,
-                PokemonId.Charizard,
-                PokemonId.Blastoise,
-                PokemonId.Beedrill,
-                PokemonId.Raichu,
-                PokemonId.Sandslash,
-                PokemonId.Nidoking,
-                PokemonId.Nidoqueen,
-                PokemonId.Clefable,
-                PokemonId.Ninetales,
-                PokemonId.Golbat,
-                PokemonId.Vileplume,
-                PokemonId.Golduck,
-                PokemonId.Primeape,
-                PokemonId.Arcanine,
-                PokemonId.Poliwrath,
-                PokemonId.Alakazam,
-                PokemonId.Machamp,
-                PokemonId.Golem,
-                PokemonId.Rapidash,
-                PokemonId.Slowbro,
-                PokemonId.Farfetchd,
-                PokemonId.Muk,
-                PokemonId.Cloyster,
-                PokemonId.Gengar,
-                PokemonId.Exeggutor,
-                PokemonId.Marowak,
-                PokemonId.Hitmonchan,
-                PokemonId.Lickitung,
-                PokemonId.Rhydon,
-                PokemonId.Chansey,
-                PokemonId.Kangaskhan,
-                PokemonId.Starmie,
-                PokemonId.MrMime,
-                PokemonId.Scyther,
-                PokemonId.Magmar,
-                PokemonId.Electabuzz,
-                PokemonId.Jynx,
-                PokemonId.Gyarados,
-                PokemonId.Lapras,
-                PokemonId.Ditto,
-                PokemonId.Vaporeon,
-                PokemonId.Jolteon,
-                PokemonId.Flareon,
-                PokemonId.Porygon,
-                PokemonId.Kabutops,
-                PokemonId.Aerodactyl,
-                PokemonId.Snorlax,
-                PokemonId.Articuno,
-                PokemonId.Zapdos,
-                PokemonId.Moltres,
-                PokemonId.Dragonite,
-                PokemonId.Mewtwo,
-                PokemonId.Mew
-            }
+            //Locations = new List<Location>
+            //{
+            //    new Location(38.55680748646112, -121.2383794784546), //Dratini Spot
+            //    new Location(-33.85901900, 151.21309800), //Magikarp Spot
+            //    new Location(47.5014969, -122.0959568), //Eevee Spot
+            //    new Location(51.5025343, -0.2055027) //Charmender Spot
+            //},
+            //Pokemon = new List<PokemonId>
+            //{
+            //    PokemonId.Venusaur,
+            //    PokemonId.Charizard,
+            //    PokemonId.Blastoise,
+            //    PokemonId.Beedrill,
+            //    PokemonId.Raichu,
+            //    PokemonId.Sandslash,
+            //    PokemonId.Nidoking,
+            //    PokemonId.Nidoqueen,
+            //    PokemonId.Clefable,
+            //    PokemonId.Ninetales,
+            //    PokemonId.Golbat,
+            //    PokemonId.Vileplume,
+            //    PokemonId.Golduck,
+            //    PokemonId.Primeape,
+            //    PokemonId.Arcanine,
+            //    PokemonId.Poliwrath,
+            //    PokemonId.Alakazam,
+            //    PokemonId.Machamp,
+            //    PokemonId.Golem,
+            //    PokemonId.Rapidash,
+            //    PokemonId.Slowbro,
+            //    PokemonId.Farfetchd,
+            //    PokemonId.Muk,
+            //    PokemonId.Cloyster,
+            //    PokemonId.Gengar,
+            //    PokemonId.Exeggutor,
+            //    PokemonId.Marowak,
+            //    PokemonId.Hitmonchan,
+            //    PokemonId.Lickitung,
+            //    PokemonId.Rhydon,
+            //    PokemonId.Chansey,
+            //    PokemonId.Kangaskhan,
+            //    PokemonId.Starmie,
+            //    PokemonId.MrMime,
+            //    PokemonId.Scyther,
+            //    PokemonId.Magmar,
+            //    PokemonId.Electabuzz,
+            //    PokemonId.Jynx,
+            //    PokemonId.Gyarados,
+            //    PokemonId.Lapras,
+            //    PokemonId.Ditto,
+            //    PokemonId.Vaporeon,
+            //    PokemonId.Jolteon,
+            //    PokemonId.Flareon,
+            //    PokemonId.Porygon,
+            //    PokemonId.Kabutops,
+            //    PokemonId.Aerodactyl,
+            //    PokemonId.Snorlax,
+            //    PokemonId.Articuno,
+            //    PokemonId.Zapdos,
+            //    PokemonId.Moltres,
+            //    PokemonId.Dragonite,
+            //    PokemonId.Mewtwo,
+            //    PokemonId.Mew
+            //}
         };
 
         public List<PokemonId> PokemonToUseMasterball = new List<PokemonId>
